@@ -9,10 +9,15 @@ module.exports = (app) => {
   router.put("/:id", studentData.update);
 
   // Retrieve all studentData
-  router.get("/societies", studentData.findAll);
+  router.get("/", studentData.findAll);
 
   // Retrieve a single student with id
   router.get("/:id", studentData.findOne);
 
+  // Delete a student with id
+  router.delete("/:id", studentData.delete);
+
+  // delete all student
+  router.delete("/", studentData.deleteAll);
   app.use("/api/student", router);
 };

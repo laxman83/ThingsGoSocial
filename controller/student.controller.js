@@ -85,3 +85,43 @@ exports.findOne = (req, res) => {
     res.status(500).send({ message: "Error retrieving student with id=" + id });
   }
 };
+
+//delete student by id
+exports.delete = (req, res) => {
+  try {
+    const id = req.params.id;
+
+    studentData.findByIdAndRemove(id).then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete student with id=${id}. Maybe student was not found!`,
+        });
+      } else {
+        res.send({
+          message: "student was deleted successfully!",
+        });
+      }
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: "Could not delete student with id=" + id,
+    });
+  }
+};
+
+//delete All student data
+
+exports.deleteAll = (req, res) => {
+  try {
+    studentData.deleteMany({}).then((data) => {
+      res.send({
+        message: `${data.deletedCount} students were deleted successfully!`,
+      });
+    });
+  } catch (err) {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while removing all studentData.",
+    });
+  }
+};
