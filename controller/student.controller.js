@@ -20,7 +20,7 @@ exports.create = (req, res) => {
       res.status(200).send(data);
     });
   } catch (err) {
-    res.status(500).send({
+    res.status(400).send({
       message:
         err.message || "Some error occurred while creating the studentData.",
     });
@@ -51,8 +51,37 @@ exports.update = (req, res) => {
             .send({ message: "student was updated successfully.", data });
       });
   } catch (err) {
-    res.status(500).send({
+    res.status(400).send({
       message: "Error updating student with id=" + id,
     });
+  }
+};
+
+//get all data
+
+exports.findAll = (req, res) => {
+  try {
+    studentData.find({}).then((data) => {
+      res.send(data);
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving student.",
+    });
+  }
+};
+
+//find student by id
+exports.findOne = (req, res) => {
+  try {
+    const id = req.params.id;
+
+    studentData.findById(id).then((data) => {
+      if (!data)
+        res.status(404).send({ message: "Not found student with id " + id });
+      else res.status(200).send(data);
+    });
+  } catch (err) {
+    res.status(500).send({ message: "Error retrieving student with id=" + id });
   }
 };
