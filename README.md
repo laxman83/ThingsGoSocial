@@ -1,6 +1,6 @@
 # ThingsGoSocial
 
-1.Clone this repository in your local computer (https://github.com/laxman83/MindBrowserAssignment.git)<br />
+1.Clone this repository in your local computer (https://github.com/laxman83/ThingsGoSocial.git)<br />
 2.Change the location of terminal to the cloned repository folder<br />
 3.Enter npm install command in the terminal for installing dependencies<br />
 (we are using the following dependencies<br />
