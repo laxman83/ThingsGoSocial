@@ -8,11 +8,11 @@ module.exports = (app) => {
   // Update a studentData with id
   router.put("/:id", studentData.update);
 
-  //Get all student data
-
   // Retrieve all studentData
   router.get("/societies", studentData.findAll);
+
   // Retrieve a single student with id
   router.get("/:id", studentData.findOne);
+
   app.use("/api/student", router);
 };
